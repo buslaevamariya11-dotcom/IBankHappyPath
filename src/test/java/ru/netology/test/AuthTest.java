@@ -24,6 +24,9 @@ public class AuthTest {
         $("[data-test-id='password'] input").setValue(registeredUser.getPassword());
         $("button.button").click();
         $("h2").shouldHave(Condition.exactText("Личный кабинет"), Duration.ofSeconds(10));
+
+        $("h2").shouldHave(Condition.exactText("Личный кабинет"), Duration.ofSeconds(10))
+                .shouldBe(Condition.visible);
     }
 
     @Test
@@ -35,6 +38,10 @@ public class AuthTest {
         // Проверяем наличие сообщения о блокировке
         $("[data-test-id='error-notification'] .notification__content")
                 .shouldHave(Condition.text("Ошибка! Пользователь заблокирован"), Duration.ofSeconds(10));
+
+        $("[data-test-id='error-notification'] .notification__content")
+                .shouldBe(Condition.visible, Duration.ofSeconds(10))
+                .shouldHave(Condition.text("Ошибка! Пользователь заблокирован"));
     }
 
     @Test
@@ -47,6 +54,10 @@ public class AuthTest {
         // Проверяем сообщение о неверном логине/пароле
         $("[data-test-id='error-notification'] .notification__content")
                 .shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль"), Duration.ofSeconds(10));
+
+        $("[data-test-id='error-notification'] .notification__content")
+                .shouldBe(Condition.visible, Duration.ofSeconds(10))
+                .shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль"));
     }
 
     @Test
@@ -58,5 +69,9 @@ public class AuthTest {
         $("button.button").click();
         $("[data-test-id='error-notification'] .notification__content")
                 .shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль"), Duration.ofSeconds(10));
+
+        $("[data-test-id='error-notification'] .notification__content")
+                .shouldBe(Condition.visible, Duration.ofSeconds(10))
+                .shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль"));
     }
 }
